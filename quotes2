@@ -1,0 +1,18 @@
+import requests
+import time
+
+def print_quotes():
+    url = "http://zenquotes.io/api/quotes"
+    for _ in range(6):
+        response = requests.get(url)
+        if response.status_code == 200:
+            quotes = response.json()
+            # Assuming the API returns a list of quotes
+            # Print the first quote from the list
+            print(quotes[0]['q'], "- by", quotes[0]['a'])
+        else:
+            print("Failed to fetch quotes")
+        time.sleep(5)  # Wait for 5 seconds before the next request
+
+if __name__ == "__main__":
+    print_quotes()
